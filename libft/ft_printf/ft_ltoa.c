@@ -6,14 +6,14 @@
 /*   By: achigvin <achigvin@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 18:56:11 by achigvin          #+#    #+#             */
-/*   Updated: 2025/05/30 18:56:12 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/06 21:25:15 by dimachad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 #include "ft_printf.h"
 
-static	int	ft_cnt(unsigned long n_cpy)
+static	int	ft_cnt(long n_cpy)
 {
 	unsigned long	cnt;
 
@@ -33,7 +33,7 @@ static	int	ft_cnt(unsigned long n_cpy)
 	return (cnt);
 }
 
-static	char	*ft_assign(int isneg, char *num, int digits, unsigned long n)
+static	char	*ft_assign(int isneg, char *num, int digits, long n)
 {
 	if (isneg == 1)
 	{
@@ -56,7 +56,7 @@ static	char	*ft_assign(int isneg, char *num, int digits, unsigned long n)
 	return (num);
 }
 
-char	*ft_ltoa(unsigned long n)
+char	*ft_ltoa(long n)
 {
 	char	*num;
 	int		isneg;

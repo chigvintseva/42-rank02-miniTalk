@@ -66,27 +66,31 @@ BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 LIBPATH = ft_printf
 ARCHIVE = $(LIBPATH)/printf.a
+INC      = -I. -I$(LIBPATH)
 
-# -c means compile w/o linking; < initial file, @ target file
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME) bonus $(ARCHIVE)
+all: $(ARCHIVE) $(NAME)
 
 $(ARCHIVE):
 	$(MAKE) -C $(LIBPATH)
 
-$(NAME): $(ARCHIVE) $(OBJ) 
-	cp -u $(ARCHIVE) $(NAME)
-	ar rvs $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	cp -f $(ARCHIVE) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+
+bonus: $(BONUS_OBJ) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
 	$(MAKE) -C $(LIBPATH) clean
-	rm -f $(OBJ)
+	$(RM) $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	$(MAKE) -C $(LIBPATH) fclean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 

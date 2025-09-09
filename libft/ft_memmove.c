@@ -32,7 +32,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		}
 		s_dest[i] = s_src[i];
 	}
-	else 
+	else
 		return (ft_memcpy(dest, src, n));
 	return (dest);
 }
