@@ -1,6 +1,7 @@
 
 #include "minitalk.h"
 
+
 int	main(void)
 {
 	pid_t	server_pid;
