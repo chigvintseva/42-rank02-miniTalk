@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achigvin <achigvin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:46 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/10 13:55:47 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/10 14:15:01 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	main(void)
 {
 	pid_t	server_pid;
 	
-	ft_printf("Server's PID: %d\n", (int)getpid());
+	server_pid = getpid();
+	ft_printf("Server's PID: %d\n", (int)server_pid);
+	
 
 	return (0);
 }
