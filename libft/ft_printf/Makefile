@@ -10,7 +10,9 @@ SRC = ft_printf.c \
 	ft_intinput.c \
 	ft_ptrinput.c \
 	ft_nbrbase.c \
-	ft_ltoa.c
+	ft_ltoa.c \
+	ft_printf_styled.c \
+	colours.c
 
 OBJ = $(SRC:.c=.o)
 

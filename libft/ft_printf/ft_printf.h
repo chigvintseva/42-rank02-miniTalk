@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achigvin <achigvin@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 18:55:51 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/06 21:24:37 by dimachad         ###   ########.fr       */
+/*   Updated: 2025/09/10 19:27:24 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,11 @@ int		ft_nbrbase(unsigned long num, char *base, int fd);
 int		ft_ptrinput(long arg);
 char	*ft_ltoa(long n);
 int		ft_uinput(unsigned long arg);
+void	red(char style);
+void	yellow(char style);
+void	green(char style);
+void	reset(void);
+void	ft_printf_styled(char *str, char colour, char style);
+
 
 #endif
