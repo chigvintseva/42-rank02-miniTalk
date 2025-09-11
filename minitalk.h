@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:43 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/10 14:16:33 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:07:23 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 # include <unistd.h>
 # include <signal.h>
 
+void	args_error_msg(void);
 
 #endif

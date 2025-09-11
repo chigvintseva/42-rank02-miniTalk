@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: achigvin <achigvin@student.42berlin.d      +#+  +:+       +#+         #
+#    By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/20 14:03:32 by achigvin          #+#    #+#              #
-#    Updated: 2025/05/20 14:03:34 by achigvin         ###   ########.fr        #
+#    Updated: 2025/09/11 16:33:43 by achigvin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,84 +14,47 @@ NAME = libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
 
-SRC = 	ft_isalpha.c \
-		ft_isdigit.c \
-		ft_isalnum.c \
-		ft_isascii.c \
-		ft_isprint.c \
-		ft_strlen.c \
-		ft_memset.c \
-		ft_bzero.c \
-		ft_memcpy.c \
-		ft_memmove.c \
-		ft_strlcpy.c \
-		ft_strlcat.c \
-		ft_toupper.c \
-		ft_tolower.c \
-		ft_strchr.c \
-		ft_strrchr.c \
-		ft_strncmp.c \
-		ft_memchr.c \
-		ft_memcmp.c \
-		ft_strnstr.c \
-		ft_atoi.c \
-		ft_calloc.c \
-		ft_strdup.c \
-		ft_substr.c \
-		ft_strjoin.c \
-		ft_strtrim.c \
-		ft_split.c \
-		ft_itoa.c \
-		ft_strmapi.c \
-		ft_striteri.c \
-		ft_putchar_fd.c \
-		ft_putstr_fd.c \
-		ft_putendl_fd.c \
-		ft_putnbr_fd.c
-		
-OBJ = $(SRC:.c=.o)
+# sources
+SRC_LIBFT = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+            ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
+            ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c \
+            ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
+            ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c \
+            ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+            ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-BONUS_SRC = ft_lstnew_bonus.c \
-			ft_lstadd_front_bonus.c \
-			ft_lstsize_bonus.c \
-			ft_lstlast_bonus.c \
-			ft_lstadd_back_bonus.c \
-			ft_lstdelone_bonus.c \
-			ft_lstclear_bonus.c \
-			ft_lstiter_bonus.c \
-			ft_lstmap_bonus.c
+SRC_PRINTF = ft_printf/ft_printf.c ft_printf/ft_charinput.c \
+             ft_printf/ft_strinput.c ft_printf/ft_intinput.c \
+             ft_printf/ft_ptrinput.c ft_printf/ft_nbrbase.c \
+             ft_printf/ft_ltoa.c ft_printf/ft_printf_styled.c \
+             ft_printf/colours.c
 
-BONUS_OBJ = $(BONUS_SRC:.c=.o)
+SRC = $(SRC_LIBFT) $(SRC_PRINTF)
 
-LIBPATH = ft_printf
-ARCHIVE = $(LIBPATH)/printf.a
-INC      = -I. -I$(LIBPATH)
-
-
-all: $(ARCHIVE) $(NAME)
-
-$(ARCHIVE):
-	$(MAKE) -C $(LIBPATH)
+OBJ_DIR = objects
+OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	cp -f $(ARCHIVE) $(NAME)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+	$(AR) $@ $?
 
-bonus: $(BONUS_OBJ) $(NAME)
-	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJ)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)/ft_printf
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(MAKE) -C $(LIBPATH) clean
-	$(RM) $(OBJ) $(BONUS_OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	$(MAKE) -C $(LIBPATH) fclean
-	$(RM) $(NAME)
+	rm -f $(NAME)
+	rm -rf $(OBJ_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
+
+-include $(DEP)
