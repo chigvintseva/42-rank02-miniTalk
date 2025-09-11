@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:33 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/11 19:12:37 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:15:57 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int	main(int argc, char **argv)
 		current_byte++;
 	}
 	send_byte(message[current_byte], server_pid);
+	pause();
 	return (0);
 }
