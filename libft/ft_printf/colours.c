@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 19:15:28 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/10 19:27:25 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/11 15:45:59 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 void	red(char style)
 {
 	if (style == 0)
-		ft_printf("\e[0;91m");
+		ft_printf("\e[0;31m");
 	else if (style == 'b')
-		ft_printf("\e[1;91m");
+		ft_printf("\e[1;31m");
 	else if (style == 'i')
-		ft_printf("\e[3;93m");
+		ft_printf("\e[3;31m");
 }
 
 void	green(char style)
@@ -30,7 +30,7 @@ void	green(char style)
 	else if (style == 'b')
 		ft_printf("\e[1;32m");
 	else if (style == 'i')
-		ft_printf("\e[3;93m");
+		ft_printf("\e[3;32m");
 }
 
 void	yellow(char style)

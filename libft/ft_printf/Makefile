@@ -1,4 +1,15 @@
-#final library name
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/09/11 15:24:56 by achigvin          #+#    #+#              #
+#    Updated: 2025/09/11 16:08:40 by achigvin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = printf.a
 
 CC = cc
@@ -14,9 +25,10 @@ SRC = ft_printf.c \
 	ft_printf_styled.c \
 	colours.c
 
-OBJ = $(SRC:.c=.o)
+OBJ_DIR = objects
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
