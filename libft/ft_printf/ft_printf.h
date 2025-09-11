@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 18:55:51 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/11 14:58:28 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/11 16:18:22 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ void	yellow(char style);
 void	green(char style);
 void	reset(char style);
 void	ft_printf_styled(char *str, char colour, char style);
-
 
 #endif
