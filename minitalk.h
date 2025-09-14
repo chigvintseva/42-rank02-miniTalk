@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:43 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/11 15:07:23 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/14 15:49:03 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@
 # include <signal.h>
 
 void	args_error_msg(void);
+void	send_byte(char current_byte, pid_t server_pid);
+
 
 #endif
