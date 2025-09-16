@@ -12,23 +12,13 @@
 
 #include "minitalk.h"
 
-t_client	*clients_management(pid_t cur_client_pid, t_client *clients, int *client_count)
-{
-	long	i;
-
-	while (i < *client_count)
-	{
-		if (clients[i].pid == pid)
-			return (&clients[i]);
-		i++;
-	}
-}
+pid_t	g_cur_client_pid;
 
 void	handler(int sig, siginfo_t *info, int *bits_count, char *byte)
 {
-	if (cur_client_pid != info->si_pid)
+	if (g_cur_client_pid != info->si_pid)
 	{
-		cur_client_pid = info->si_pid;
+		g_cur_client_pid = info->si_pid;
 		*bits_count = 0;
 		*byte = 0;
 	}
@@ -39,13 +29,13 @@ void	handler(int sig, siginfo_t *info, int *bits_count, char *byte)
 	}
 	else if (sig == SIGUSR2)
 		(*bits_count)++;
-	// & check wether it is other signal like crush case or smth????? in the client i mean
 	if (*bits_count == 7)
 	{
 		write(1, &(*byte), 1);
 		*bits_count = 0;
 		*byte = 0;
 	}
+	kill(server_pid, SIGUSR1); // acknowldegemt 
 }
 
 int	main(void)
