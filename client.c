@@ -21,14 +21,15 @@ void	send_byte(char current_byte, pid_t server_pid)
 	{
 		if (((current_byte >> bit) & 1) == 1)
 		{
-			kill(server_pid, SIG_BIT_ONE);
-			pause();		
+			kill(server_pid, SIG_BIT_ONE); 
+			pause();
+			// ?? check whetehr the correct signal was received - or server crushed	
 		}
-
 		else
 		{
 			kill(server_pid, SIG_BIT_ZERO);
 			pause();
+					// ?? check whetehr the correct signal was received - or server crushed
 		}
 		bit--;
 	}
