@@ -17,6 +17,13 @@
 # include <unistd.h>
 # include <signal.h>
 
+typedef struct	s_client
+{
+	pid_t			pid;
+	unsigned char	byte;
+	int				bits_count;
+} t_client;
+
 void	args_error_msg(void);
 void	send_byte(char current_byte, pid_t server_pid);
 void	ack_from_server(int signal);

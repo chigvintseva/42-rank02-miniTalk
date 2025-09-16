@@ -20,12 +20,12 @@ void	handler(int sig, siginfo_t *info, int *bits_count, char *byte)
 		*bits_count = 0;
 		*byte = 0;
 	}
-	if (sig == SIG_BIT_ONE)
+	if (sig == SIGUSR1)
 	{
 		*byte = (*byte >> (7 - *bits_count)) | 1;
 		(*bits_count)++;
 	}
-	else if (sig == SIG_BIT_ZERO)
+	else if (sig == SIGUSR2)
 		(*bits_count)++;
 	// & check wether it is other signal like crush case or smth????? in the client i mean
 	if (*bits_count == 7)
