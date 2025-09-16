@@ -13,15 +13,13 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# define SIG_BIT_ONE SIGUSR1
-# define SIG_BIT_ZERO SIGUSR2
-
 # include "libft/libft.h"
 # include <unistd.h>
 # include <signal.h>
 
 void	args_error_msg(void);
 void	send_byte(char current_byte, pid_t server_pid);
-
+void	ack_from_server(int signal);
+void	handler(int sig, siginfo_t *info, int *bits_count, char *byte);
 
 #endif
