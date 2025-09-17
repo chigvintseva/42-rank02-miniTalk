@@ -25,13 +25,14 @@ void	handler(int sig, siginfo_t *info, void *smth)
 		g_cur_client_pid = info->si_pid;
 		bits_count = 0;
 		byte = 0;
-		ft_printf("New client PID: %d\n", g_cur_client_pid);
 	}
-	ft_printf("Exited if condition pid check\n");
 	if (sig == SIGUSR1)
 		byte = (byte >> (7 - bits_count)) | 1;
-	ft_printf("after if byte changing conditionn");
+	else if (sig == SIGUSR2)
+		byte = (byte >> (7 - bits_count));
 	bits_count++;
+	printf("Bits received: %d, Current byte: %d\n", bits_count, byte);
+	ft_printf("now bits_count is %d\n", bits_count);`
 	if (bits_count == 7)
 	{
 		ft_printf("print the fucking BYTE CONDITION\n");
@@ -39,7 +40,7 @@ void	handler(int sig, siginfo_t *info, void *smth)
 		bits_count = 0;
 		byte = 0;
 	}
-	// kill(g_cur_client_pid, SIGUSR1);
+	kill(g_cur_client_pid, SIGUSR1);
 }
 
 int	main(void)
