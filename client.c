@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:33 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/17 18:06:42 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:43:20 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static pid_t	g_cur_server_pid;
 void	ack_from_server(int signal)
 {
 	(void)signal;
+	ft_printf("Received acknowledgment from server\n");  
 }
 
 void	send_byte(char current_byte)
@@ -28,13 +29,15 @@ void	send_byte(char current_byte)
 	{
 		if (((current_byte >> bit) & 1) == 1)
 		{
+			ft_printf("Sending bit 1\n");
 			kill(g_cur_server_pid, SIGUSR1); 
-			pause();
+			//pause();
 		}
 		else
 		{
+			ft_printf("Sending bit 0\n");
 			kill(g_cur_server_pid, SIGUSR2);
-			pause();
+			//pause();
 		}
 		bit--;
 	}
@@ -61,6 +64,6 @@ int	main(int argc, char **argv)
 		current_byte++;
 	}
 	send_byte(message[current_byte]);
-	pause();
+	//pause();
 	return (0);
 }
