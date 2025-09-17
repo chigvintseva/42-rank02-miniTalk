@@ -14,40 +14,43 @@
 
 pid_t	g_cur_client_pid;
 
-void	handler(int sig, siginfo_t *info, int *bits_count, char *byte)
+void	handler(int sig, siginfo_t *info)
 {
+	static int	bits_count;
+	static char	byte;
+
+	bits_count = 0;
+	byte = 0;
 	if (g_cur_client_pid != info->si_pid)
 	{
 		g_cur_client_pid = info->si_pid;
-		*bits_count = 0;
-		*byte = 0;
+		bits_count = 0;
+		byte = 0;
 	}
 	if (sig == SIGUSR1)
 	{
-		*byte = (*byte >> (7 - *bits_count)) | 1;
-		(*bits_count)++;
+		byte = (byte >> (7 - bits_count)) | 1;
+		(bits_count)++;
 	}
 	else if (sig == SIGUSR2)
-		(*bits_count)++;
-	if (*bits_count == 7)
+		(bits_count)++;
+	if (bits_count == 7)
 	{
-		write(1, &(*byte), 1);
-		*bits_count = 0;
-		*byte = 0;
+		write(1, &(byte), 1);
+		bits_count = 0;
+		byte = 0;
 	}
-	kill(server_pid, SIGUSR1); // acknowldegemt 
+	kill(g_cur_client_pid, SIGUSR1);
 }
 
 int	main(void)
 {
-	pid_t	server_pid;
-	struct	sigaction sa;
-	char	byte;
-	int		bits_count;
+	pid_t		server_pid;
+	struct		sigaction sa;
 	
+	g_cur_client_pid = 0;
 	server_pid = getpid();
 	ft_printf("Server's PID: %d\n", (int)server_pid);
-
 	memset(&sa, 0, sizeof(sa));
 	sa.sa_sigaction = handler;
 	sa.sa_flags = SA_SIGINFO;
@@ -56,11 +59,7 @@ int	main(void)
 	sigaddset(&sa.sa_mask, SIGUSR2);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	byte = 0;
-	bits_count = 0;
 	while (1)
-	{
 		pause();
-	}
 	return (0);
 }
