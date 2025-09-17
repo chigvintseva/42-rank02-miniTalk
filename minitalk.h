@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:43 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/16 20:41:10 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:08:17 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <signal.h>
 
 void	args_error_msg(void);
-void	send_byte(char current_byte, pid_t server_pid);
+void	send_byte(char current_byte);
 void	ack_from_server(int signal);
-void	handler(int sig, siginfo_t *info, int *bits_count, char *byte);
+void	handler(int sig, siginfo_t *info, void *smth);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/10 13:55:39 by achigvin          #+#    #+#              #
-#    Updated: 2025/09/15 17:19:13 by achigvin         ###   ########.fr        #
+#    Updated: 2025/09/17 18:01:58 by achigvin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJ_CLIENT = $(addprefix $(OBJ_DIR_CLIENT)/,$(SRC_CLIENT:.c=.o))
 
 # ----------
 
-SRC_SERVER = server.c handler.c
+SRC_SERVER = server.c
 
 OBJ_DIR_SERVER = objects_server
 OBJ_SERVER = $(addprefix $(OBJ_DIR_SERVER)/,$(SRC_SERVER:.c=.o))
