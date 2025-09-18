@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:43 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/18 16:07:40 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:01:51 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_clients_info
 }	t_clients_info;
 
 void			args_error_msg(void);
+void			no_pid_msg(void);
+int				check_server_exists(pid_t server_pid);
 void			send_byte(char current_byte);
 void			ack_from_server(int signal);
 void			add_new_client(pid_t client_pid);

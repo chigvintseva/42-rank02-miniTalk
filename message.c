@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:42:17 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/18 15:36:39 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:01:16 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,9 @@ void	args_error_msg(void)
 	ft_printf_styled("   2. Message\n", 'w', 'i');
 	ft_printf_styled("Example: ./client 4242 \"Message to Server(pid 4242)\"\n",
 		'y', 'i');
+}
+
+void	no_pid_msg(void)
+{
+	ft_printf_styled("Invalid PID input\n", 'r', 'b');
 }

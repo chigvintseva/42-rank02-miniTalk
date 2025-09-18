@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:33 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/18 16:50:40 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:59:35 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		return (args_error_msg(), 1);
 	g_cur_server_pid = ft_atoi(argv[1]);
+	if (!check_server_exists(g_cur_server_pid))
+		return (no_pid_msg(), 1);
 	message = argv[2];
 	current_byte = 0;
 	sa.sa_handler = ack_from_server;
@@ -40,12 +42,18 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+int	check_server_exists(pid_t server_pid)
+{
+	if (kill(server_pid, 0) == 0)
+		return (1);
+	else
+		return (0);
+}
+
 void	ack_from_server(int signal)
 {
 	if (signal == SIGUSR2)
-	{
 		ft_printf_styled("Message is received by server\n", 'y', 'i');
-	}
 }
 
 void	send_byte(char current_byte)
