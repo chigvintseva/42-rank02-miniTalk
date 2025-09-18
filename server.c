@@ -12,14 +12,10 @@
 
 #include "minitalk.h"
 
-static pid_t	g_cur_client_pid = 0;
-
 void	handler(int sig, siginfo_t *info, void *smth)
 {
-	static int	bits_count = 0;
-	static char	byte = 0;
 	(void)smth;
-
+	
 	if (g_cur_client_pid != info->si_pid)
 	{
 		g_cur_client_pid = info->si_pid;
@@ -27,11 +23,9 @@ void	handler(int sig, siginfo_t *info, void *smth)
 		byte = 0;
 	}
 	if (sig == SIGUSR1)
-		byte = (byte >> (7 - bits_count)) | 1;
-	else if (sig == SIGUSR2)
-		byte = (byte >> (7 - bits_count));
+		byte = (byte << (7 - bits_count)) | 1;
 	bits_count++;
-	printf("Bits received: %d, Current byte: %d\n", bits_count, byte);
+	ft_printf("Bits received: %d, Current byte: %d\n", bits_count, byte);
 	ft_printf("now bits_count is %d\n", bits_count);`
 	if (bits_count == 7)
 	{

@@ -16,6 +16,15 @@
 # include "libft/libft.h"
 # include <unistd.h>
 # include <signal.h>
+# include <string.h>
+
+typedef struct client_info
+{
+	pid_t				client_pid;
+	int					bits_count;
+	unsigned char		byte;
+	struct client_info	*next;
+} client_info_t;
 
 void	args_error_msg(void);
 void	send_byte(char current_byte);
