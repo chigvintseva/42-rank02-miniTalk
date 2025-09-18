@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:42:17 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/11 16:38:18 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 15:36:39 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 void	args_error_msg(void)
 {
-	ft_printf_styled("Too few/many arguments are passed!\n", 'r', 'b');
-	ft_printf_styled("There should be only 2 arguments:\n   1. Server's PID (where to send the message)\n   2. Message\n", 'w', 'i');
-	ft_printf_styled("Example: ./client 4242 \"Message to be received by server(pid 4242)\"\n", 'y', 'i');
+	ft_printf_styled("Too few/many arguments are passed!\n",
+		'r', 'b');
+	ft_printf_styled("There should be only 2 arguments:\n", 
+		'w', 'i');
+	ft_printf_styled("   1. Server's PID (where to send the message)\n", 
+		'w', 'i');
+	ft_printf_styled("   2. Message\n", 'w', 'i');
+	ft_printf_styled("Example: ./client 4242 \"Message to Server(pid 4242)\"\n",
+		'y', 'i');
 }
