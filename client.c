@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:33 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/18 16:16:31 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:25:05 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,10 @@ void	send_byte(char current_byte)
 	while (bit >= 0)
 	{
 		if (((current_byte >> bit) & 1) == 1)
-		{
-			kill(g_cur_server_pid, SIGUSR1); 
-			pause();
-		}
+			kill(g_cur_server_pid, SIGUSR1);
 		else
-		{
 			kill(g_cur_server_pid, SIGUSR2);
-			pause();
-		}
+		pause();
 		bit--;
 	}
 }

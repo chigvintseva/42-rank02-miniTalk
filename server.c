@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 15:40:56 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/18 16:16:22 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:30:20 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	free_client(pid_t client_pid)
 			else
 				previous_client->next = cur_client->next;
 			free(cur_client);
+			kill(client_pid, SIGUSR1);
 			return ;
 		}
 		previous_client = cur_client;
