@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:55:33 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/18 16:25:05 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:50:40 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (message[current_byte] != '\0')
 	{
 		send_byte(message[current_byte]);
@@ -41,7 +42,10 @@ int	main(int argc, char **argv)
 
 void	ack_from_server(int signal)
 {
-	(void)signal;
+	if (signal == SIGUSR2)
+	{
+		ft_printf_styled("Message is received by server\n", 'y', 'i');
+	}
 }
 
 void	send_byte(char current_byte)

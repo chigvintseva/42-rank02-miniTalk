@@ -6,7 +6,7 @@
 /*   By: achigvin <achigvin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 15:40:56 by achigvin          #+#    #+#             */
-/*   Updated: 2025/09/18 16:30:20 by achigvin         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:51:24 by achigvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	handler(int sig, siginfo_t *info, void *smth)
 	client->bits_count++;
 	if (client->bits_count == 8)
 	{
+		if (client->byte == 0)
+			kill(client->client_pid, SIGUSR2);
 		write(1, &(client->byte), 1);
 		client->bits_count = 0;
 		client->byte = 0;
